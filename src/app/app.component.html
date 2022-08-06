@@ -1,0 +1,72 @@
+<canvas id="canvasChessboard" width="800px" height="500px"></canvas>
+<ng-container>
+  <form [formGroup]="myChessPlaceForm" (ngSubmit)="onSubmit(myChessPlaceForm)">
+    <label for="x-cordinate">
+      <input formControlName="xCoord" type="number" min="0" max="7" class="form_controls" placeholder="x-cordinate" />
+      <span *ngIf="myChessPlaceForm && myChessPlaceForm?.get('xCoord')?.invalid" pawn-color>please enter valid
+        value</span>
+    </label>
+
+    <label for="y-cordinate">
+      <input formControlName="yCoord" type="number" min="0" max="7" style="margin-bottom:10px; margin-right:50px"
+        placeholder="y-cordinate" /><span *ngIf="myChessPlaceForm && myChessPlaceForm?.get('yCoord')?.invalid"
+        pawn-color>please enter
+        valid value</span></label>
+    <br />
+    <span>Choose your facing direction</span>
+    <br />
+    <label>
+      <input type="radio" value="0" class="form_controls" formControlName="facing" />
+      <span>East</span>
+    </label>
+    <label>
+      <input type="radio" value="1" class="form_controls" formControlName="facing" />
+      <span>West</span>
+    </label>
+
+    <label>
+      <input type="radio" value="2" class="form_controls" formControlName="facing" />
+      <span>North</span>
+    </label>
+    <label>
+      <input type="radio" value="3" class="form_controls" formControlName="facing" />
+      <span>South</span>
+    </label>
+    <br />
+    <span>Choose your color</span>
+    <br />
+    <label>
+      <input type="radio" value="0" class="form_controls" formControlName="color" />
+      <span>Black</span>
+    </label>
+
+    <label>
+      <input type="radio" value="1" class="form_controls" formControlName="color" />
+      <span>White</span>
+    </label>
+    <br />
+    <button type="submit" [disabled]="!myChessPlaceForm.valid">place</button>
+  </form>
+</ng-container>
+<br />
+<div style="padding-bottom: 10px" *ngIf="isplaceClicked">
+  <button (click)="onLeft()">left</button>
+</div>
+<div style="padding-bottom: 10px" *ngIf="isplaceClicked">
+  <button (click)="onRight()">right</button>
+</div>
+<div style="padding-bottom: 10px" *ngIf="isplaceClicked">
+  <ng-container>
+    <label *ngFor="let radiobutton of moveValue">
+      <input type="radio" name="options" class="form_controls" (click)="onMoveSelect(radiobutton)">Move {{radiobutton}}
+      step
+    </label>
+    <button (click)="onMove()">move</button>
+  </ng-container>
+</div>
+<div style="padding-bottom: 10px" *ngIf="isplaceClicked">
+  <button (click)="onReport()">report</button>
+</div>
+<div *ngIf="isReport">
+  {{reportValues.x}},{{reportValues.y}},{{reportValues.facing}},{{reportValues.color}}
+</div>

@@ -1,0 +1,27 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+  grid-template-rows: repeat(8, 1px);
+  grid-gap: 5px;
+}
+.black {
+  height: 40px;
+  background-color: #999;
+
+  text-align: center;
+}
+.white {
+  background-color: #fff;
+
+  height: 40px;
+
+  text-align: center;
+}
+
+.pawn-color {
+  color: red;
+}
+.form_controls {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
